@@ -13,6 +13,7 @@ jobs:
         if: github.event.action == 'ping'
         run: |
           curl -X POST https://api.github.com/repos/deepakdinesh1123/actions/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -H 'Accept: application/vnd.github.everest-preview+json ' \
+             'Content-Type: application/json'
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "pong", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
