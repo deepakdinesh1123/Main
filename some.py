@@ -30,9 +30,4 @@ jobs:
           java-version: 1.8
       - name: Lint debug flavor
         run: bash ./gradlew lintDebug --stacktrace
-      - name: Lint results
-        uses: actions/upload-artifact@v1
-        with:
-          name: app
-          path: app/build/reports/lint-results-debug.html
 """)
