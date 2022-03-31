@@ -1,4 +1,4 @@
-data = """
+print("""
 jobs:
   test:
     name: Run Unit Tests
@@ -35,7 +35,4 @@ jobs:
         with:
           name: app
           path: app/build/reports/lint-results-debug.html
-"""
-
-with open("result.txt", "w+") as f:
-    f.write(data)
+""")
