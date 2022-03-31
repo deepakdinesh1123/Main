@@ -23,6 +23,14 @@ jobs:
       - name: Install django
         run: cd django && pip install -e . && cd ..
       - name: Install django-bench
-        run: cd django-bench && pip install -e . && cd ../django
+        run: cd djangobench && pip install -e . && cd ..
+      - name: Run bench
+        run: cd django && djangobench --control=3.0 --experiment=main | cat result.txt
+      - name: save result artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Benchmark
+          file: result.txt
+
         
 
