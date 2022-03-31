@@ -8,4 +8,18 @@ jobs:
     steps:
     - name: Hello
       uses: docker://hello-world
+    
+  run-django:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+      - name: clone
+        uses: actions/checkout@v3
+        with:
+          name: django/django
+      - run: pip install -e .
+        
 
