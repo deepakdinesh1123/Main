@@ -21,6 +21,6 @@ jobs:
         with:
           name: django/django
           path: './django'
-      - run: ls
+      - run: ls django
         
 
