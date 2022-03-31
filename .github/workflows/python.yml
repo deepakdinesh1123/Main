@@ -1,0 +1,24 @@
+name: Artifact
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened]
+  
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+      - run: python some.py
+      - name: Save-artifact
+        uses: actions/upload-artifact@v1
+        with: 
+          name: results
+          path: /result.txt
+
