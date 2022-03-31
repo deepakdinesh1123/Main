@@ -20,7 +20,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           name: django/django
-          ref: refs/heads/release
       - run: ls
         
 
