@@ -15,9 +15,14 @@ jobs:
       - name: setup-python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.10'
-      - name: clone
+          python-version: '3.8'
+      - name: clone django
         run: git clone https://github.com/django/django.git
-      - run: ls django
+      - name: clone django-bench
+        run: git clone https://github.com/django/djangobench.git
+      - name: Install django
+        run: cd django && pip install -e . && cd ..
+      - name: Install django-bench
+        run: cd django-bench && pip install -e . && cd ../django
         
 
