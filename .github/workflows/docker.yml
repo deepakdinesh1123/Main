@@ -25,7 +25,7 @@ jobs:
       - name: Install django-bench
         run: cd djangobench && pip install -e . && cd ..
       - name: Run bench
-        run: cd django && djangobench --control=3.0 --experiment=main | cat result.txt
+        run: cd django && djangobench --control=3.0 --experiment=main | cat > result.txt
       - name: save result artifact
         uses: actions/upload-artifact@v2
         with:
