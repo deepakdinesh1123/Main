@@ -1,0 +1,11 @@
+name: Docker
+
+on: [push]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Hello
+      uses: docker://hello-world
+
