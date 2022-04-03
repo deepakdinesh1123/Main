@@ -31,4 +31,4 @@ jobs:
       - name: Lint debug flavor
         run: bash ./gradlew lintDebug --stacktrace
 """)
-print("self hosted runner added(ubuntu vm)")
+print("self hosted runner added(ubuntu vm) and windows removed")
