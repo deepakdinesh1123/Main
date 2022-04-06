@@ -16,7 +16,7 @@ jobs:
       - name: install django
         run: pip install django 
       - name: create django project
-        run: django-admin startproject polls && cd polls
+        run: django-admin startproject polls & cd polls
       - name: run server
         run: python manage.py runserver
   
