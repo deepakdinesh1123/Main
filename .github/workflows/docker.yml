@@ -16,10 +16,20 @@ jobs:
       - name: install django
         run: pip install django 
       - name: create django project
-        run: django-admin startproject test && cd test
+        run: django-admin startproject test-django-project && cd test-django-project
       - name: run server
         run: python manage.py runserver
-      - name: run python file
-        run: pyton some.py
+  
+  run-locust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+      - name: checkout 
+        uses: actions/checkout@v3
+      - name: run locust
+        run: locust --headless --users 10 --spawn-rate 1 -H http://localhost:8000/ --csv=result -t1m
         
 
