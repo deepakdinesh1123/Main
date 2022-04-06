@@ -16,7 +16,7 @@ jobs:
       - name: install django
         run: pip install django 
       - name: create django project
-        run: django-admin startproject test-django-project && cd test-django-project
+        run: django-admin startproject polls && cd polls
       - name: run server
         run: python manage.py runserver
   
@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.8'
+      - name: install locust
+        run: pip install locust
       - name: checkout 
         uses: actions/checkout@v3
       - name: run locust
