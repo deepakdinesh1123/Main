@@ -3,11 +3,6 @@ name: Docker
 on: [push]
 
 jobs:
-  hello-world:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Hello
-      uses: docker://hello-world
     
   run-django:
     runs-on: ubuntu-latest
@@ -16,21 +11,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.8'
-      - name: clone django
-        run: git clone https://github.com/django/django.git
-      - name: clone django-bench
-        run: git clone https://github.com/django/djangobench.git
-      - name: Install django
-        run: cd django && pip install -e . && cd ..
-      - name: Install django-bench
-        run: cd djangobench && pip install -e . && cd ..
-      - name: Run bench
-        run: cd django && djangobench --control=3.0 --experiment=main | cat > result.txt
-      - name: save result artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Benchmark
-          path: result.txt
-
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: install django
+        run: pip install django 
+      - name: create django project
+        run: django-admin startproject test && cd test
+      - name: run server
+        run: python manage.py runserver
+      - name: run python file
+        run: pyton some.py
         
 
