@@ -5,7 +5,7 @@ on: [push]
 jobs:
     
   run-django:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: setup-python
         uses: actions/setup-python@v3
@@ -14,14 +14,15 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: install django
-        run: pip install django 
+        run: pip install django gunicorn
       - name: create django project
         run: django-admin startproject polls
       - name: run server
-        run: python polls/manage.py runserver
+        run: cd polls && gunicorn polls.wsgi --daemon
   
   run-locust:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    needs: run-django
     steps:
       - name: setup python
         uses: actions/setup-python@v3
