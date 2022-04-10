@@ -1,7 +1,6 @@
 
-from django.db import models
-# importing validationerror
-from django.core.exceptions import ValidationError
+from django.db import models,  reset_queries, NotSupportedError
+from django.core.exceptions import ValidationError, EmptyResultSet
 
 
 print("""
@@ -38,17 +37,8 @@ jobs:
         run: bash ./gradlew lintDebug --stacktrace
 """)
 print("self hosted runner added(ubuntu vm) and windows removed")
- 
-# creating a validator function
-def validate_geeks_mail(value):
-    if "@gmail.com" in value:
-        return value
-    else:
-        raise ValidationError("This field accepts mail id of google only")
- 
- 
-# Create your models here.
-class GeeksModel(models.Model):
-    geeks_mail = models.CharField(max_length = 200)
-  
-print("run checks")
+a = ValidationError()
+b = models.Model()
+r = EmptyResultSet()
+reset_queries()
+m = NotSupportedError()
