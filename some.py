@@ -50,3 +50,5 @@ def validate_geeks_mail(value):
 # Create your models here.
 class GeeksModel(models.Model):
     geeks_mail = models.CharField(max_length = 200)
+  
+print("run checks")
