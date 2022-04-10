@@ -1,6 +1,6 @@
 
-from django.db import models
-from django.core.exceptions import ValidationError
+from django.db import models,  reset_queries, NotSupportedError
+from django.core.exceptions import ValidationError, EmptyResultSet
 
 
 print("""
@@ -39,3 +39,6 @@ jobs:
 print("self hosted runner added(ubuntu vm) and windows removed")
 a = ValidationError()
 b = models.Model()
+r = EmptyResultSet()
+reset_queries()
+m = NotSupportedError()

@@ -13,4 +13,6 @@ jobs:
           python-version: '3.9'
       - name: flake8 action
         uses: py-actions/flake8@v2
+      - name: isort
+        uses: isort/isort-action@master
   
