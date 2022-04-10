@@ -1,0 +1,23 @@
+name: checks
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  checks: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install python 
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+      - name: Install Dependencies
+        run: pip install flake8
+      - name: Run flake8
+        run: flake8 .
+      - name: isort
+        uses: isort/isort-action@master
+  
