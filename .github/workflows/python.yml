@@ -1,28 +1,12 @@
-name: Artifact
+name:  python-version
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened]
-  schedule:
-    - cron: '*/5 * * * *'
-  
+on: [push, pull_request]
+
 jobs:
-  run:
-    runs-on: self-hosted
+  version:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9"]
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: setup-python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10'
-      - run: python some.py | cat > file.txt
-      - name: Save-artifact
-        uses: actions/upload-artifact@v1
-        with: 
-          name: results
-          path: file.txt
-
+      - name: 
