@@ -13,5 +13,6 @@ jobs:
       - name: Install Deps
         run: pip install asv
       - uses: actions/checkout@v3
-      - name: Run benchmarks
-        run: asv run
+      - name: Pre run
+        run: asv machine --yes
+      - run: asv run
