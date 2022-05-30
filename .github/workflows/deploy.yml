@@ -15,5 +15,3 @@ jobs:
           repo: actions
           github_token: ${{ secrets.ACCESS_TOKEN }}
           workflow_file_name: airspeed.yml
-          trigger-workflow: true
-          wait-workflow: true
