@@ -1,20 +1,17 @@
-name: Deploy
+name: Trigger workflow 
 on:
   push:
     branches:
       - main
 jobs:
   build:
-    name: Run Web App
+    name: Trigger workflow
     runs-on: ubuntu-latest
     steps:
-      - name: Build Web App
-        run: |
-          echo "Build Web App"
-          sleep 10s
+      - name: Trigger Workflow
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: deepakdinesh1123
           repo: actions
           github_token: ${{ secrets.ACCESS_TOKEN }}
-          workflow_file_name: deploy.yml
+          workflow_file_name: airspeed.yml
