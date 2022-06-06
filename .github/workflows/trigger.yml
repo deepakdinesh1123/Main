@@ -3,7 +3,7 @@ name: Trigger
 on:
   push:
     branches:
-      - "main"
+      - "workflow_branch"
 
 jobs:
   Hello:

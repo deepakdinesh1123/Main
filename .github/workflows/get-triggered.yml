@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "I was triggered"
+        run: echo "I was triggered in a branch"
