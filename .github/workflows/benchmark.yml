@@ -13,5 +13,5 @@ jobs:
         with:
           owner: deepakdinesh1123
           repo: actions
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{  secrets.ACCESS_TOKEN }}
           workflow_file_name: airspeed.yml
