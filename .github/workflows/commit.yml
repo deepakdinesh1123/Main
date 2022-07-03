@@ -1,0 +1,17 @@
+name: commit
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  Print:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Print commit hash
+        run: git log --oneline
+      - name: Print latest commit 
+        run: git rev-parse HEAD
+
