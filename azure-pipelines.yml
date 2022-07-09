@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - main
+pr:
+  autoCancel: false
+  branches:
+    include:
+      - main
+
+pool:
+  name: default
+
+resources:
+  repositories:
+    - repository: benchmarks
+      type: git
+      name: ddeepakdinesh13/benchmarks
+  
+steps:
+- checkout: self
+- checkout: benchmarks
+- bash: echo "Checkout out"
+- bash: ls
