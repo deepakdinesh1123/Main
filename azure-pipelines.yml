@@ -16,8 +16,8 @@ pool:
 
 resources:
   pipelines:
-    - pipeline: benchmarks
-      source: benchmark-repo
+    - pipeline: benchmarkrepo
+      source: benchmarkrepo
       project: Benchmarks
   
 steps:
