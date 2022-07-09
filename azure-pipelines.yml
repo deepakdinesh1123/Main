@@ -18,6 +18,7 @@ resources:
   repositories:
     - repository: Benchmarks
       endpoint: deepakdinesh1123
+      ref: main
       type: github
       name: deepakdinesh1123/benchmarks
   
