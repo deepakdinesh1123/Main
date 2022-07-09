@@ -17,7 +17,7 @@ pool:
 resources:
   repositories:
     - repository: benchmarks
-      type: git
+      type: github
       name: Benchmarks/benchmarks
   
 steps:
