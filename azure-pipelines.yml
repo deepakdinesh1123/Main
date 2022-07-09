@@ -26,6 +26,7 @@ steps:
 - checkout: self
 - checkout: Benchmarks
 - bash: |
+    git config --global url."git@github.com:".insteadOf "https://github.com/"
     git config user.email "azure_bot@azure.com"
     git config user.name "Azure Bot"
     cd benchmarks
