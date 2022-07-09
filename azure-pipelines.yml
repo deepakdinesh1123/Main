@@ -15,22 +15,10 @@ pool:
   name: default
 
 resources:
-  repositories:
-    - repository: Benchmarks
-      endpoint: deepakdinesh1123
-      ref: main
-      type: github
-      name: deepakdinesh1123/benchmarks
+  pipelines:
+    - pipeline: benchmarks
+      source: benchmarks
+      project: Benchmarks
   
 steps:
 - checkout: self
-- checkout: Benchmarks
-- bash: |
-    git config --global url."git@github.com:".insteadOf "https://github.com/"
-    git config user.email "azure_bot@azure.com"
-    git config user.name "Azure Bot"
-    cd benchmarks
-    echo "" > new.txt
-    git add *
-    git commit -m "change adde by Azure pipeline"
-    git push origin HEAD:refs/heads/main
