@@ -30,4 +30,4 @@ steps:
     echo "" > new.txt
     git add *
     git commit -m "change adde by Azure pipeline"
-    git push origin
+    git push origin HEAD:refs/heads/main
