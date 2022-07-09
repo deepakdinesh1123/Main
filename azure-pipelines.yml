@@ -24,5 +24,9 @@ resources:
 steps:
 - checkout: self
 - checkout: Benchmarks
-- bash: echo "Checkout out"
-- bash: ls
+- bash: |
+    cd benchmarks
+    echo "" > new.txt
+    git add *
+    git commit -m "change adde by Azure pipeline"
+    git push origin
