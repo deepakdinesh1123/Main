@@ -21,4 +21,5 @@ resources:
       project: Benchmarks
   
 steps:
+- bash: git config --global url.https://github.com/.insteadOf  ssh://git@github.com/
 - checkout: self
