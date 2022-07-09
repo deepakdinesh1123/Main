@@ -17,12 +17,12 @@ pool:
 resources:
   repositories:
     - repository: Benchmarks
-      endpoint: https://github.com/deepakdinesh1123/benchmarks
+      endpoint: deepakdinesh1123.benchmarks
       type: github
       name: deepakdinesh1123/benchmarks
   
 steps:
 - checkout: self
-- checkout: benchmarks
+- checkout: Benchmarks
 - bash: echo "Checkout out"
 - bash: ls
