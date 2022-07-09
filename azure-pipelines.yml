@@ -17,7 +17,7 @@ pool:
 resources:
   repositories:
     - repository: Benchmarks
-      type: github
+      type: git
       name: deepakdinesh1123/benchmarks
   
 steps:
