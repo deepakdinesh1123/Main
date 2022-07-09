@@ -17,8 +17,9 @@ pool:
 resources:
   repositories:
     - repository: Benchmarks
-      type: git
-      name: Benchmarks/benchmarks
+      endpoint: deepakdinesh1123
+      type: github
+      name: deepakdinesh1123/benchmarks
   
 steps:
 - checkout: self
