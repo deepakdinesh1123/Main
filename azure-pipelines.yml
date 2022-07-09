@@ -17,7 +17,7 @@ pool:
 resources:
   repositories:
     - repository: Benchmarks
-      endpoint: https://github.com/deepakdinesh1123/benchmarks.git
+      endpoint: git@github.com:deepakdinesh1123/benchmarks.git
       type: github
       name: deepakdinesh1123/benchmarks
   
