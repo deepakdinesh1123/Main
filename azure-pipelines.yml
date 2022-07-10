@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - main
+pr:
+  autoCancel: false
+  branches:
+    include:
+      - main
+
+pool:
+  name: default
+
+resources:
+  pipelines:
+    - pipeline: benchmarkrepo
+      source: benchmarkrepo
+      project: Benchmarks
+      trigger: 
+        branches:
+          - main
+  
+steps:
+- bash: echo "I was triggered"
