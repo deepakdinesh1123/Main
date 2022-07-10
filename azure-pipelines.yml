@@ -16,7 +16,7 @@ pool:
 
 resources:
   pipelines:
-    - pipeline: benchmarkrepo
+    - pipeline: benchmarks
       source: benchmarkrepo
       project: Benchmarks
       trigger: 
