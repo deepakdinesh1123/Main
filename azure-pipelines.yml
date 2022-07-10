@@ -13,15 +13,6 @@ pr:
 
 pool:
   name: default
-
-resources:
-  pipelines:
-    - pipeline: benchmarks
-      source: benchmarkrepo
-      project: Benchmarks
-      trigger: 
-        branches:
-          - main
   
 steps:
 - bash: echo "I was triggered"
