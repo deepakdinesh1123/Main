@@ -29,7 +29,7 @@ jobs:
         run: |-
           asv machine --machine ubuntu-22.04 --yes
           set +e
-          asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD'
+          asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD' | sed -n -e '/BENCHMARKS/,$p' >> $GITHUB_STEP_SUMMARY
           set -e
       
 
