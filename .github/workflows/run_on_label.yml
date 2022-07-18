@@ -7,7 +7,7 @@ on:
 
 jobs:
   Run_benchmarks:
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == 'benchmark'}}
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout benchmarks
