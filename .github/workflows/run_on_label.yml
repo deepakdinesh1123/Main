@@ -1,0 +1,37 @@
+name: Run on label
+
+on:
+  issue_comment:
+    types:
+      - "created"
+
+jobs:
+  Run_benchmarks:
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout benchmarks
+        uses: actions/checkout@v3
+        with:
+          repository: deepakdinesh1123/benchmarks
+          path: '.'
+      - name: Change to repo
+        run: cd benchmarks
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Cache Django
+        uses: actions/cache@v3
+        with:
+          path: Django/*
+          key: Django
+      - name: Run Benchmarks
+        shell: bash -l {0}
+        run: |-
+          asv machine --machine ubuntu-22.04 --yes
+          set +e
+          asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD'
+          set -e
+      
+
+
+  
