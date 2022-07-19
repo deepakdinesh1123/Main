@@ -2,8 +2,7 @@ name: Run on label or comment
 
 on:
   pull_request:
-    types:
-      - "labeled"
+    types: [ labeled ]
 
 jobs:
   Run_benchmarks:
