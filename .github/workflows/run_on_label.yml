@@ -16,7 +16,7 @@ jobs:
           repository: smithdc1/django-asv
           path: "."
       - name: Change to repo
-        run: cd django-asv
+        run: ls
       - name: Install requirements
         run: pip install -r requirements.txt
       - name: Cache Django
