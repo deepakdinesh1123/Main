@@ -1,13 +1,13 @@
 name: Run on label or comment
 
 on:
-  issue_comment:
+  pull_request:
     types:
-      - "created"
+      - "labeled"
 
 jobs:
   Run_benchmarks:
-    if: ${{ github.event.issue.pull_request && github.event.comment.body == 'benchmark'}}
+    if: ${{ github.event.label.name == 'benchmark'}}
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout benchmarks
