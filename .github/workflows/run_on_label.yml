@@ -13,10 +13,10 @@ jobs:
       - name: Checkout benchmarks
         uses: actions/checkout@v3
         with:
-          repository: deepakdinesh1123/benchmarks
+          repository: smithdc1/django-asv
           path: "."
       - name: Change to repo
-        run: cd benchmarks
+        run: cd django-asv
       - name: Install requirements
         run: pip install -r requirements.txt
       - name: Cache Django
