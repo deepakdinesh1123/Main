@@ -1,4 +1,4 @@
-name: Run on label or comment
+name: Run on label
 
 on:
   pull_request:
@@ -45,8 +45,8 @@ jobs:
           pr_number: ${{ github.event.number }}
           state: success
           context: 'Benchmarks'
-          repository: deepakdinesh1123/benchmarks
-          description: 'BENCHMARKS NOT CHANGED SIGNIFICANTLY'
+          repository: deepakdinesh1123/Main
+          description: '$BENCHMARK-RESULT'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
