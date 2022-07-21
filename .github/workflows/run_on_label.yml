@@ -26,16 +26,18 @@ jobs:
         run: |-
           asv machine --machine ubuntu-22.04 --yes
           echo '```' >> $GITHUB_STEP_SUMMARY
-          asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD' |\
+          asv continuous --interleave-processes -a processes=2 --split --show-stderr '2a04e24d2dfc8e60a66e4369d970913cb2112d91' 'HEAD' |\
           sed -n -E '/(before.*after.*ratio)|(BENCHMARKS)/,$p' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
       - name: Set Benchmark Result
         id: set_benchmark_result
+        shell: bash -l {0}
         run: |-
-          if grep "SOME BENCHMARKS HAVE CHANGED" $GITHUB_STEP_SUMMARY; then
+          if grep "SOME BENCHMARKS HAVE CHANGED" $GITHUB_STEP_SUMMARY 
+          then
             echo "::set-output name=BENCHMARK-RESULT::SOME BENCHMARKS CHANGED SIGNIFICANTLY PERFORMANCE REDUCED"
           else 
-            echo "::set-output name=BENCHMARK-RESULT::SOME BENCHMARKS NOT CHANGED SIGNIFICANTLY"
+            echo "::set-output name=BENCHMARK-RESULT::BENCHMARKS NOT CHANGED SIGNIFICANTLY"
           fi
       - name: Set status
         uses: "teamniteo/pull_request_status_action@v1.0.0"
