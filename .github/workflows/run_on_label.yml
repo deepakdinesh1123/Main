@@ -1,18 +1,13 @@
-name: Run on label
+name: Benchmark
 
 on:
   pull_request:
     types: [ labeled ]
 
-env:
-  BENCHMARK-RESULT: 'BENCHMARKS NOT CHANGED SIGNIFICANTLY'
-
 jobs:
   Run_benchmarks:
     if: ${{ github.event.label.name == 'benchmark'}}
     runs-on: ubuntu-22.04
-    outputs:
-      benchmark-result: ${{ steps.set_benchmark_result.outputs.benchmark-result}}
     steps:
       - name: Checkout benchmarks
         uses: actions/checkout@v3
@@ -34,19 +29,22 @@ jobs:
           asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD' |\
           sed -n -E '/(before.*after.*ratio)|(BENCHMARKS)/,$p' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-      - name: set_benchmark_result
+      - name: Set Benchmark Result
+        id: set_benchmark_result
         run: |-
           if grep "SOME BENCHMARKS HAVE CHANGED" $GITHUB_STEP_SUMMARY; then
-            echo "::set-env name=BENCHMARK-RESULT::SOME BENCHMARKS CHANGED SIGNIFICANTLY PERFORMANCE REDUCED"
+            echo "::set-output name=BENCHMARK-RESULT::SOME BENCHMARKS CHANGED SIGNIFICANTLY PERFORMANCE REDUCED"
+          else 
+            echo "::set-output name=BENCHMARK-RESULT::SOME BENCHMARKS NOT CHANGED SIGNIFICANTLY"
           fi
       - name: Set status
         uses: "teamniteo/pull_request_status_action@v1.0.0"
         with:
           pr_number: ${{ github.event.number }}
           state: success
-          context: 'Benchmarks'
+          context: 'Benchmarking Result'
           repository: deepakdinesh1123/Main
-          description: '$BENCHMARK-RESULT'
+          description: ${{ steps.set_benchmark_result.outputs.BENCHMARK-RESULT }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
