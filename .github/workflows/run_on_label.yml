@@ -4,10 +4,15 @@ on:
   pull_request:
     types: [ labeled ]
 
+env:
+  BENCHMARK-RESULT: 'BENCHMARKS NOT CHANGED SIGNIFICANTLY'
+
 jobs:
   Run_benchmarks:
     if: ${{ github.event.label.name == 'benchmark'}}
     runs-on: ubuntu-22.04
+    outputs:
+      benchmark-result: ${{ steps.set_benchmark_result.outputs.benchmark-result}}
     steps:
       - name: Checkout benchmarks
         uses: actions/checkout@v3
@@ -25,9 +30,23 @@ jobs:
         shell: bash -l {0}
         run: |-
           asv machine --machine ubuntu-22.04 --yes
-          set +e
           echo '```' >> $GITHUB_STEP_SUMMARY
           asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD^' 'HEAD' |\
           sed -n -E '/(before.*after.*ratio)|(BENCHMARKS)/,$p' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          set -e
+      - name: set_benchmark_result
+        run: |-
+          if grep "SOME BENCHMARKS HAVE CHANGED" $GITHUB_STEP_SUMMARY; then
+            echo "::set-env name=BENCHMARK-RESULT::SOME BENCHMARKS CHANGED SIGNIFICANTLY PERFORMANCE REDUCED"
+          fi
+      - name: Set status
+        uses: "teamniteo/pull_request_status_action@v1.0.0"
+        with:
+          pr_number: ${{ github.event.number }}
+          state: success
+          context: 'Benchmarks'
+          repository: deepakdinesh1123/benchmarks
+          description: 'BENCHMARKS NOT CHANGED SIGNIFICANTLY'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
