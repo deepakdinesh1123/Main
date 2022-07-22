@@ -34,7 +34,7 @@ jobs:
         id: set_benchmark_result
         shell: bash -l {0}
         run: |-
-          if grep "PERFORMANCE DECREASED" $GITHUB_STEP_SUMMARY 
+          if grep -q "PERFORMANCE DECREASED" out.txt;
           then
             echo "::set-output name=BENCHMARK-RESULT::$(cat out.txt)"
           else 
