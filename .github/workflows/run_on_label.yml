@@ -26,7 +26,7 @@ jobs:
         run: |-
           asv machine --machine ubuntu-22.04 --yes
           echo '```' >> $GITHUB_STEP_SUMMARY
-          asv continuous --interleave-processes -a processes=2 --split --show-stderr '2a04e24d2dfc8e60a66e4369d970913cb2112d91' 'HEAD' |\
+          asv continuous --interleave-processes -a processes=2 --split --show-stderr 'HEAD' '2a04e24d2dfc8e60a66e4369d970913cb2112d91' |\
           sed -n -E '/(before.*after.*ratio)|(BENCHMARKS)/,$p' >> out.txt
           cat out.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
@@ -36,7 +36,7 @@ jobs:
         run: |-
           if grep -q "PERFORMANCE DECREASED" out.txt;
           then
-            echo "::set-output name=BENCHMARK-RESULT::$(cat out.txt)"
+            echo "::set-output name=BENCHMARK-RESULT::SOME BENCHMARKS HAVE CHANGED SIGNIFICANTLY. PERFORMANCE DECREASED"
           else 
             echo "::set-output name=BENCHMARK-RESULT::BENCHMARKS NOT CHANGED SIGNIFICANTLY"
           fi
